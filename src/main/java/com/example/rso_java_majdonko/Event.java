@@ -1,13 +1,12 @@
 package com.example.rso_java_majdonko;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Event {
     protected int id;
     protected String ime;
-    protected Date date;
-
-    public Event(int id, String ime, Date date){
+    protected LocalDate date;
+    public Event(int id, String ime, LocalDate date){
         this.id = id;
         this.ime = ime;
         this.date = date;
@@ -29,11 +28,15 @@ public class Event {
         this.ime = ime;
     }
 
-    public Date getDate(){
+    public LocalDate getDate(){
         return this.date;
     }
 
-    public void setDate(Date date){
+    public void setDate(LocalDate date){
         this.date = date;
+    }
+
+    public String toString(){
+        return this.ime + " " + this.date.toString();
     }
 }

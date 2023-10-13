@@ -1,10 +1,10 @@
 package com.example.rso_java_majdonko;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class BirthdayEvent extends Event{
     protected int leto;
-    public BirthdayEvent(int id, String ime, Date date, int leto) {
+    public BirthdayEvent(int id, String ime, LocalDate date, int leto) {
         super(id, ime, date);
         this.leto = leto;
     }
