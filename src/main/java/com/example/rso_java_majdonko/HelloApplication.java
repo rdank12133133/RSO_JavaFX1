@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
         MenuItem displayItem = new MenuItem("Display View");
         MenuItem inputBoxes = new MenuItem("Input View");
 
-        VBox root = new VBox(10, menuBar, display.getDatePicker(), display.getInputBox(), display.getDisplayButton(), display.getDisplayLabel(),display.getListView(), display.getDeleteButton());
+        VBox root = new VBox(10, menuBar, display.getInputBox(), display.getDatePicker(), display.getBirthdayToggle(), display.getLeto(), display.getDisplayButton(), display.getDisplayLabel(),display.getListView(), display.getDeleteButton());
 
         displayItem.setOnAction(event -> {
             root.getChildren().set(1, display.getInputBox());

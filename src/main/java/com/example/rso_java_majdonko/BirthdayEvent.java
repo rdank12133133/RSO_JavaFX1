@@ -16,4 +16,6 @@ public class BirthdayEvent extends Event{
     public void setLeto(int leto){
         this.leto = leto;
     }
+
+    public String toString() { return super.toString()+ " Starost:" + leto; }
 }
