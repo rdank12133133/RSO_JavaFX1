@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Display {
@@ -24,6 +25,8 @@ public class Display {
     private Label displayLabel;
     private ListView<Event> listView; // Add ListView for displaying strings
     private ObservableList<Event> items; // Observable list to hold strings
+    private Button serialise;
+    private Button deserialise;
     private int selectedItem=-1; // Observable list to hold strings
 
     public Display() {
@@ -38,8 +41,11 @@ public class Display {
         displayButton = new Button("Add");
         deleteButton = new Button("Delete");
         displayLabel = new Label();
+        serialise = new Button("Save");
+        deserialise = new Button("Load");
         listView = new ListView<>();
         items = FXCollections.observableArrayList(); // Initialize the observable list
+        Serialisable serialisable = new Serialisable();
 
         displayButton.setOnAction(event -> {
             String ime = inputBox.getText();
@@ -65,6 +71,26 @@ public class Display {
                 selectedItem=-1;
             }
             inputBox.clear(); // Clear the input box
+        });
+
+        serialise.setOnAction(event -> {
+            try {
+                serialisable.serialise(items);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        });
+
+        deserialise.setOnAction(event ->{
+            try {
+                items.removeAll();
+                items = serialisable.deserialise();
+                listView.setItems(items);
+            } catch (IOException e) {
+                System.out.println(e);
+            } catch (ClassNotFoundException e) {
+                System.out.println(e);
+            }
         });
 
         birthdayToggle.setOnAction((event) -> {
@@ -119,7 +145,8 @@ public class Display {
     public Button getDeleteButton() {
         return deleteButton;
     }
-
+    public Button getSerialise() { return serialise; }
+    public Button getDeserialise() { return deserialise; }
     public Label getDisplayLabel() {
         return displayLabel;
     }

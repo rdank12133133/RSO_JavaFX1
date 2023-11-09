@@ -1,8 +1,8 @@
 package com.example.rso_java_majdonko;
 
 import java.time.LocalDate;
-
-public class Event {
+import java.io.Serializable;
+public class Event implements Serializable{
     protected int id;
     protected String ime;
     protected LocalDate date;
